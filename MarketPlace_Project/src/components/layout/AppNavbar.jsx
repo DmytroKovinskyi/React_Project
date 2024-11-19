@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import "../layoutStyles/AppNavbar.css"; 
 
 const AppNavbar = () => {
   const navigate = useNavigate();
@@ -18,28 +19,36 @@ const AppNavbar = () => {
   }
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/" state={{ hello: "Hello, world!" }}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/products">Products</Link>
-        </li>
-        <li>
-          <Link to="/orders">Orders</Link>
-        </li>
-        {user?.role === "admin" && (
+    <nav className="navbar">
+      <div className="navbar-container">
+        <ul className="navbar-links">
           <li>
-            <Link to="/users">Users</Link>
+            <Link to="/" className="nav-link" state={{ hello: "Hello, world!" }}>
+              Home
+            </Link>
           </li>
-        )}
-        <li>
-          <button onClick={handleLogout}>Logout</button>
-        </li>
-      </ul>
+          <li>
+            <Link to="/products" className="nav-link">
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link to="/orders" className="nav-link">
+              Orders
+            </Link>
+          </li>
+          {user?.role === "admin" && (
+            <li>
+              <Link to="/users" className="nav-link">
+                Users
+              </Link>
+            </li>
+          )}
+        </ul>
+        <button onClick={handleLogout} className="logout-btn">
+          Logout
+        </button>
+      </div>
     </nav>
   );
 };

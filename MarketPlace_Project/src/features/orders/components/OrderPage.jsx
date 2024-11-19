@@ -1,42 +1,72 @@
-import { useEffect, useState } from "react";
-import { OrderService } from "../services/orders.service";
+import { useState } from "react";
+import "../styles/OrderPage.css"; // Для кращого вигляду стилі можна підключити
 
 const OrderPage = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders] = useState([
+    {
+      id: 1,
+      userId: 101,
+      products: [
+        { productId: 1, quantity: 2 },
+        { productId: 2, quantity: 1 },
+      ],
+    },
+    {
+      id: 2,
+      userId: 102,
+      products: [
+        { productId: 3, quantity: 4 },
+        { productId: 4, quantity: 1 },
+      ],
+    },
+    {
+      id: 3,
+      userId: 103,
+      products: [
+        { productId: 2, quantity: 2 },
+        { productId: 5, quantity: 3 },
+      ],
+    },
+  ]);
 
-  useEffect(() => {
-    const orderService = new OrderService();
+  const [users] = useState([
+    { id: 101, name: "John Doe" },
+    { id: 102, name: "Jane Smith" },
+    { id: 103, name: "Alice Johnson" },
+  ]);
 
-    const fetchOrders = async () => {
-      try {
-        const ordersData = await orderService.getOrders();
-        setOrders(ordersData);
-      } catch (error) {
-        console.error("Failed to fetch orders", error);
-      }
-    };
-
-    fetchOrders();
-  }, []);
+  const getUserName = (userId) => {
+    const user = users.find((u) => u.id === userId);
+    return user ? user.name : "Unknown User";
+  };
 
   return (
-    <div>
+    <div className="order-page">
       <h2>Orders</h2>
-      <ul>
+      <div className="orders-container">
         {orders.map((order) => (
-          <li key={order.id}>
+          <div key={order.id} className="order-card">
             <h3>Order ID: {order.id}</h3>
-            <p>User ID: {order.userId}</p>
-            <ul>
-              {order.products.map((product) => (
-                <li key={product.productId}>
-                  Product ID: {product.productId}, Quantity: {product.quantity}
-                </li>
-              ))}
-            </ul>
-          </li>
+            <p>User: {getUserName(order.userId)}</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Product ID</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {order.products.map((product) => (
+                  <tr key={product.productId}>
+                    <td>{product.productId}</td>
+                    <td>{product.quantity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

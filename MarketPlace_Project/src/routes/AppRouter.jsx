@@ -5,7 +5,7 @@ import LoginPage from '../features/auth/LoginPage'
 import HomePage from '../features/home/HomePage'
 import ProductPage from '../features/products/components/ProductPage'
 import OrderPage from '../features/orders/components/OrderPage'
-import UsersPage from '../features/users/UsersPage'
+import UsersPage from '../features/users/components/UsersPage'
 import ProtectedRoute from './ProtectedRoute'
 
 const AppRouter = () => {
