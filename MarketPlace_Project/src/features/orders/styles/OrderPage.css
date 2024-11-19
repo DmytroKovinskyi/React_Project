@@ -1,0 +1,44 @@
+.order-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .order-card {
+    border: 1px solid #030303;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #e5ff005b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .order-card h3 {
+    margin: 0 0 10px;
+  }
+  
+  .order-card p {
+    margin: 0 0 15px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #ff00005b;
+  }
+  
