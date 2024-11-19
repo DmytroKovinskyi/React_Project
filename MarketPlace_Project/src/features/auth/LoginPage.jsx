@@ -31,7 +31,6 @@ const LoginPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Iмітація виклику API
     const user = users.find((user) => user.userName === userName);
 
     if (!user) {

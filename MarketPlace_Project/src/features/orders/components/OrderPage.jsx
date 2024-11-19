@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/OrderPage.css"; // Для кращого вигляду стилі можна підключити
+import "../styles/OrderPage.css";
 
 const OrderPage = () => {
   const [orders] = useState([

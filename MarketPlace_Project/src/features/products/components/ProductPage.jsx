@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ProductService } from "../services/products.service";
-import "../styles/ProductPage.css"; // Підключаємо файл стилів
+import "../styles/ProductPage.css";
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);

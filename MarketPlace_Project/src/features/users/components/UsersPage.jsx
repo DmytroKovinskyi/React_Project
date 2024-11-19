@@ -1,28 +1,8 @@
-import { useEffect, useState } from "react";
-import { UserService } from "../services/users.service";
-import "../styles/UsersPage.css"; // Для стилів
+import "../styles/UsersPage.css";
+import { useUsers } from "../hooks/useUsers";
 
 const UsersPage = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const userService = new UserService();
-
-    const fetchUsers = async () => {
-      try {
-        const usersData = await userService.getUsers();
-        setUsers(usersData);
-        setIsLoading(false);
-      } catch (error) {
-        setError("Failed to fetch users. Please try again later.");
-        setIsLoading(false);
-      }
-    };
-
-    fetchUsers();
-  }, []);
+  const { users, isLoading, error } = useUsers();
 
   if (isLoading) {
     return <p>Loading users...</p>;
