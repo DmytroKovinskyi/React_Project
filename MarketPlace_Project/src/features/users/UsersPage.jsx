@@ -1,15 +1,15 @@
-import "../styles/UsersPage.css";
-import { useUsers } from "../hooks/useUsers";
+import './styles/UsersPage.css'
+import { useUsers } from './hooks/useUsers'
 
 const UsersPage = () => {
-  const { users, isLoading, error } = useUsers();
+  const { users, isLoading, error } = useUsers()
 
   if (isLoading) {
-    return <p>Loading users...</p>;
+    return <p>Loading users...</p>
   }
 
   if (error) {
-    return <p className="error">{error}</p>;
+    return <p className="error">{error}</p>
   }
 
   return (
@@ -40,7 +40,7 @@ const UsersPage = () => {
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default UsersPage;
+export default UsersPage

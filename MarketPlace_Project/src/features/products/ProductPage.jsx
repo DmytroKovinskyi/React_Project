@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
-import { ProductService } from "../services/products.service";
-import "../styles/ProductPage.css";
+import { useProducts } from "./hooks/useProducts";
+import "./styles/ProductPage.css";
 
 const ProductPage = () => {
-  const [products, setProducts] = useState([]);
+  const { products, loading, error } = useProducts();
 
-  useEffect(() => {
-    const productService = new ProductService();
+  if (loading) {
+    return <div>Loading products...</div>;
+  }
 
-    const fetchProducts = async () => {
-      try {
-        const productsData = await productService.getProducts();
-        setProducts(productsData);
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
 
   return (
     <div className="product-page">
