@@ -1,24 +1,29 @@
-/* Загальний стиль навбару */
 .navbar {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  z-index: 1000;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
   
   .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
   }
   
   .navbar-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin: 0;
     padding: 0;
   }
@@ -42,7 +47,7 @@
     background-color: #ff9800;
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 10px 15px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
