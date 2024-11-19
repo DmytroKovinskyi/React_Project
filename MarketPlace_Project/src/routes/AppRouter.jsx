@@ -3,9 +3,9 @@ import Layout from '../components/layout/Layout'
 import NotFoundPage from '../components/NotFoundPage'
 import LoginPage from '../features/auth/LoginPage'
 import HomePage from '../features/home/HomePage'
-import ProductPage from '../features/products/components/ProductPage'
-import OrderPage from '../features/orders/components/OrderPage'
-import UsersPage from '../features/users/components/UsersPage'
+import ProductPage from '../features/products/ProductPage'
+import OrderPage from '../features/orders/OrderPage'
+import UsersPage from '../features/users/UsersPage'
 import ProtectedRoute from './ProtectedRoute'
 
 const AppRouter = () => {

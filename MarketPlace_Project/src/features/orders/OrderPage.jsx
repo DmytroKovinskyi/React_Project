@@ -1,34 +1,9 @@
-import { useState } from "react";
-import "../styles/OrderPage.css";
+import React, { useState, useEffect } from "react";
+import { useOrders } from "./hooks/useOrders";
+import "./styles/OrderPage.css";
 
 const OrderPage = () => {
-  const [orders] = useState([
-    {
-      id: 1,
-      userId: 101,
-      products: [
-        { productId: 1, quantity: 2 },
-        { productId: 2, quantity: 1 },
-      ],
-    },
-    {
-      id: 2,
-      userId: 102,
-      products: [
-        { productId: 3, quantity: 4 },
-        { productId: 4, quantity: 1 },
-      ],
-    },
-    {
-      id: 3,
-      userId: 103,
-      products: [
-        { productId: 2, quantity: 2 },
-        { productId: 5, quantity: 3 },
-      ],
-    },
-  ]);
-
+  const { orders, loading, error } = useOrders();
   const [users] = useState([
     { id: 101, name: "John Doe" },
     { id: 102, name: "Jane Smith" },
@@ -39,6 +14,14 @@ const OrderPage = () => {
     const user = users.find((u) => u.id === userId);
     return user ? user.name : "Unknown User";
   };
+
+  if (loading) {
+    return <div>Loading orders...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
 
   return (
     <div className="order-page">
