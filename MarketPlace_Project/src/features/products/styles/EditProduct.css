@@ -29,6 +29,8 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+    padding-right: 20px;
+    padding-top: 20px;
   }
   
   form h3 {
@@ -60,3 +62,11 @@
     background-color: #2a5c84;
   }
   
+  form input, form button {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
