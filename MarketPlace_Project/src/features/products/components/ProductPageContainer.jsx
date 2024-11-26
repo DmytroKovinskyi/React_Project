@@ -3,6 +3,7 @@ import { ProductService } from "../services/products.service";
 import ProductList from "./ProductList";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
+import "../styles/Container.css";
 
 const ProductPageContainer = () => {
   const [products, setProducts] = useState([]);
