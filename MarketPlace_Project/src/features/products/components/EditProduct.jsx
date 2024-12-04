@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/EditProduct.css";
+import "../styles/Common.css";
 
 const EditProduct = ({ product, onSave, onClose }) => {
   const [title, setTitle] = useState(product.title);

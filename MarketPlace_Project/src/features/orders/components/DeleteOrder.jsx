@@ -1,5 +1,7 @@
 import React from "react";
-import "../styles/DeleteOrder.css";
+import "../styles/Common.css";
+import "../styles/Buttons.css";
+import "../styles/Forms.css";
 
 const DeleteOrder = ({ orderId, onDelete }) => {
   const handleDelete = () => {

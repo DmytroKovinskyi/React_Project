@@ -3,6 +3,10 @@ import { useOrders } from "../hooks/useOrders";
 import CreateOrder from "./CreateOrder";
 import UpdateOrder from "./UpdateOrder";
 import DeleteOrder from "./DeleteOrder";
+import "../styles/Common.css";
+import "../styles/Buttons.css";
+import "../styles/Forms.css";
+import "../styles/Table.css";
 import "../styles/OrdersContainer.css";
 
 const OrdersContainer = () => {
@@ -63,7 +67,7 @@ const OrdersContainer = () => {
               ))}
             </tbody>
           </table>
-          <button onClick={() => setEditingOrder(order)}>Edit</button>
+          <button className="button-edit" onClick={() => setEditingOrder(order)}>Edit</button>
           <DeleteOrder orderId={order.id} onDelete={deleteOrder} />
         </div>
       ))}

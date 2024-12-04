@@ -1,3 +1,4 @@
+import "../styles/ProductList.css";
 const ProductList = ({ products, onEdit, onDelete }) => {
     return (
       <table className="product-table">
@@ -30,8 +31,8 @@ const ProductList = ({ products, onEdit, onDelete }) => {
                   : "N/A"}
               </td>
               <td>
-                <button onClick={() => onEdit(product)}>Edit</button>
-                <button onClick={() => onDelete(product.id)}>Delete</button>
+                <button className="editButton" onClick={() => onEdit(product)}>Edit</button>
+                <button className="deleteButton" onClick={() => onDelete(product.id)}>Delete</button>
               </td>
             </tr>
           ))}

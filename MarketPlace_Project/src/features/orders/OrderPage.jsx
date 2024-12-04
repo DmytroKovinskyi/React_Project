@@ -1,6 +1,6 @@
 import React from "react";
 import OrdersContainer from "./components/OrdersContainer";
-import "./styles/OrderPage.css";
+import "./styles/Common.css";
 
 const OrderPage = () => {
   return (

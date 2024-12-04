@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "../styles/UpdateOrder.css";
+import "../styles/Common.css";
+import "../styles/Buttons.css";
+import "../styles/Forms.css";
 
 const UpdateOrder = ({ order, onUpdate, onCancel }) => {
   const [updatedOrder, setUpdatedOrder] = useState(order);

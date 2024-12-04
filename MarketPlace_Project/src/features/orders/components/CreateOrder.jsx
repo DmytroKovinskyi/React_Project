@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "../styles/CreateOrder.css";
+import "../styles/Common.css";
+import "../styles/Buttons.css";
+import "../styles/Forms.css";
 
 const CreateOrder = ({ onCreate, onCancel }) => {
   const [newOrder, setNewOrder] = useState({ userId: "", products: [] });
