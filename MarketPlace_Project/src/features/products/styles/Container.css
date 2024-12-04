@@ -1,16 +1,17 @@
 .add-button {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #3d87c0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    text-transform: uppercase;
-  }
-  
-  .add-button:hover {
-    background-color: #2a5c84;
-  }
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #3d87c0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #2a5c84;
+}
