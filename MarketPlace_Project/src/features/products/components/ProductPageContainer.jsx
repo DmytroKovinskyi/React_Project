@@ -3,6 +3,7 @@ import { ProductService } from "../services/products.service";
 import ProductList from "./ProductList";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
+import Pagination from "./Pagination";
 import "../styles/Container.css";
 
 const ProductPageContainer = () => {
@@ -11,6 +12,8 @@ const ProductPageContainer = () => {
   const [error, setError] = useState(null);
   const [editingProduct, setEditingProduct] = useState(null);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const productService = new ProductService();
 
@@ -58,6 +61,13 @@ const ProductPageContainer = () => {
     }
   };
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>{error}</div>;
 
@@ -68,9 +78,14 @@ const ProductPageContainer = () => {
         Add Product
       </button>
       <ProductList
-        products={products}
+        products={currentProducts}
         onEdit={setEditingProduct}
         onDelete={handleDeleteProduct}
+      />
+      <Pagination
+        totalPages={totalPages}
+        paginate={paginate}
+        currentPage={currentPage}
       />
       {isAddingProduct && (
         <AddProduct

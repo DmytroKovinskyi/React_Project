@@ -22,6 +22,7 @@ button {
   button.delete-button {
     background-color: #ff4d4d;
     color: white;
+    margin-top: 10px;
   }
   
   button.delete-button:hover {
