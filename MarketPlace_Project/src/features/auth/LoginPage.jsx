@@ -64,6 +64,7 @@ const LoginPage = () => {
         alignItems: "center",
         justifyContent: "center",
         width: "960px",
+        
       }}
     >
       <h1>Login</h1>
@@ -71,9 +72,13 @@ const LoginPage = () => {
         style={{
           padding: "1.5em",
           border: "1px solid #ccc",
+          borderRadius : "15px"
         }}
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}
+        style ={{
+          backgroundColor :"#e5ff005b"
+        }}>
           <div>
             <label htmlFor="username">Username</label>
             <input
