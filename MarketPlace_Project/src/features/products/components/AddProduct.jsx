@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState } from "react"; 
 import "../styles/AddProduct.css";
-import "../styles/Common.css";
+import "../../../components/layoutStyles/Common.css";
 
 const AddProduct = ({ onAdd, onClose }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState("/placeholder.png");
   const [errors, setErrors] = useState({});
 
   const validateFields = () => {
@@ -15,7 +15,6 @@ const AddProduct = ({ onAdd, onClose }) => {
     if (!description.trim()) errors.description = "Description is required.";
     if (!price || isNaN(price) || parseFloat(price) <= 0)
       errors.price = "Price must be a valid positive number.";
-    if (!image.trim()) errors.image = "Image URL is required.";
     return errors;
   };
 
@@ -27,11 +26,16 @@ const AddProduct = ({ onAdd, onClose }) => {
       return;
     }
 
-    onAdd({ title, description, price: parseFloat(price), image });
+    onAdd({ 
+      title, 
+      description, 
+      price: parseFloat(price), 
+      image: image.trim() || "/placeholder.png"
+    });
     setTitle("");
     setDescription("");
     setPrice("");
-    setImage("");
+    setImage("/placeholder.png");
     setErrors({});
     onClose();
   };

@@ -1,35 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import { useOrders } from "../hooks/useOrders";
+import { useOrderForms } from "../hooks/useOrderForms";
 import CreateOrder from "./CreateOrder";
 import UpdateOrder from "./UpdateOrder";
 import DeleteOrder from "./DeleteOrder";
-import "../styles/Common.css";
-import "../styles/Buttons.css";
+import "../../../components/layoutStyles/Common.css";
+import "../../../components/layoutStyles/Buttons.css";
 import "../styles/Forms.css";
 import "../styles/Table.css";
 import "../styles/OrdersContainer.css";
 
 const OrdersContainer = () => {
-  const { orders, loading, error, createOrder, updateOrder, deleteOrder } =
-    useOrders();
-  const [showCreateForm, setShowCreateForm] = useState(false);
-  const [editingOrder, setEditingOrder] = useState(null);
+  const { orders, loading, error, createOrder, updateOrder, deleteOrder } = useOrders();
+  const {
+    showCreateForm,
+    editingOrder,
+    openCreateForm,
+    closeCreateForm,
+    openEditForm,
+    closeEditForm,
+  } = useOrderForms();
 
   if (loading) return <div>Loading orders...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="orders-container">
-      <button onClick={() => setShowCreateForm(true)}>Add New Order</button>
+      <button onClick={openCreateForm}>Add New Order</button>
 
       {showCreateForm && (
         <div className="form-overlay">
           <CreateOrder
             onCreate={(order) => {
               createOrder(order);
-              setShowCreateForm(false);
+              closeCreateForm();
             }}
-            onCancel={() => setShowCreateForm(false)}
+            onCancel={closeCreateForm}
           />
         </div>
       )}
@@ -40,9 +46,9 @@ const OrdersContainer = () => {
             order={editingOrder}
             onUpdate={(orderId, updatedOrder) => {
               updateOrder(orderId, updatedOrder);
-              setEditingOrder(null);
+              closeEditForm();
             }}
-            onCancel={() => setEditingOrder(null)}
+            onCancel={closeEditForm}
           />
         </div>
       )}
@@ -67,7 +73,7 @@ const OrdersContainer = () => {
               ))}
             </tbody>
           </table>
-          <button className="button-edit" onClick={() => setEditingOrder(order)}>Edit</button>
+          <button className="button-edit" onClick={() => openEditForm(order)}>Edit</button>
           <DeleteOrder orderId={order.id} onDelete={deleteOrder} />
         </div>
       ))}
