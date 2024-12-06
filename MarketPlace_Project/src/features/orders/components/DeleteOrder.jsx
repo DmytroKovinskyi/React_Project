@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/Common.css";
-import "../styles/Buttons.css";
+import "../../../components/layoutStyles/Common.css";
+import "../../../components/layoutStyles/Buttons.css";
 import "../styles/Forms.css";
 
 const DeleteOrder = ({ orderId, onDelete }) => {

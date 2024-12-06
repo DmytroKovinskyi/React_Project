@@ -1,6 +1,6 @@
 import { useState } from "react"; 
 import "../styles/AddProduct.css";
-import "../styles/Common.css";
+import "../../../components/layoutStyles/Common.css";
 
 const AddProduct = ({ onAdd, onClose }) => {
   const [title, setTitle] = useState("");

@@ -1,4 +1,4 @@
-import "../styles/Pagination.css";
+import "../layoutStyles/Pagination.css";
 
 const Pagination = ({ totalPages, paginate, currentPage }) => {
   const pageNumbers = [...Array(totalPages).keys()].map((num) => num + 1);

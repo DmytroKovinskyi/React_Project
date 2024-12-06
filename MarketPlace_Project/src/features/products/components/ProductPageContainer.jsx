@@ -3,7 +3,7 @@ import { ProductService } from "../services/products.service";
 import ProductList from "./ProductList";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
-import Pagination from "./Pagination";
+import Pagination from "../../../components/layout/Pagination";
 import "../styles/Container.css";
 
 const ProductPageContainer = () => {
