@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { ProductService } from "../services/products.service";
 
-const useProducts = () => {
+export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,19 +12,20 @@ const useProducts = () => {
       try {
         const productsData = await productService.getProducts();
         setProducts(productsData);
-      } catch (err) {
+      } catch {
         setError("Failed to fetch products");
       } finally {
         setLoading(false);
       }
     };
+
     fetchProducts();
   }, [productService]);
 
   const addProduct = useCallback(async (newProduct) => {
     try {
       const addedProduct = await productService.addProduct(newProduct);
-      setProducts((prevProducts) => [...prevProducts, addedProduct]);
+      setProducts((prev) => [...prev, addedProduct]);
     } catch {
       setError("Failed to add product");
     }
@@ -33,8 +34,8 @@ const useProducts = () => {
   const editProduct = useCallback(async (productId, updatedProduct) => {
     try {
       const updated = await productService.updateProduct(productId, updatedProduct);
-      setProducts((prevProducts) =>
-        prevProducts.map((p) => (p.id === productId ? updated : p))
+      setProducts((prev) =>
+        prev.map((product) => (product.id === productId ? updated : product))
       );
     } catch {
       setError("Failed to update product");
@@ -44,7 +45,7 @@ const useProducts = () => {
   const deleteProduct = useCallback(async (productId) => {
     try {
       await productService.deleteProduct(productId);
-      setProducts((prevProducts) => prevProducts.filter((p) => p.id !== productId));
+      setProducts((prev) => prev.filter((product) => product.id !== productId));
     } catch {
       setError("Failed to delete product");
     }
@@ -59,5 +60,3 @@ const useProducts = () => {
     deleteProduct,
   };
 };
-
-export default useProducts;
