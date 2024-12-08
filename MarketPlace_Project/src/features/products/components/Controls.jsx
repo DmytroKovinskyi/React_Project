@@ -1,4 +1,6 @@
 import React from "react";
+import "../../../components/layoutStyles/Common.css";
+import "../styles/Container.css";
 
 const Controls = ({ searchQuery, onSearchChange, sortOrder, onSortOrderChange, onAddProduct }) => (
   <div className="controls">
