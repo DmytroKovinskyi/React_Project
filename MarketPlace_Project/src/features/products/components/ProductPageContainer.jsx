@@ -1,6 +1,5 @@
-import { useState, useCallback, useMemo } from "react";
-import { useProducts } from "../hooks/useProducts";
-import usePagination from "../hooks/usePagination";
+import { useContext, useMemo, useState, useCallback } from "react";
+import { ProductsContext } from "../context/ProductsContext";
 import ProductList from "./ProductList";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
@@ -9,11 +8,16 @@ import Pagination from "../../../components/layout/Pagination";
 import "../styles/Container.css";
 
 const ProductPageContainer = () => {
-  const { products, loading, error, addProduct, editProduct, deleteProduct } = useProducts();
+  const { products, addProduct, editProduct, deleteProduct, loading, error } =
+    useContext(ProductsContext);
+
   const [editingProduct, setEditingProduct] = useState(null);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 5;
 
   const filteredAndSortedProducts = useMemo(() => {
     const filtered = products.filter((product) =>
@@ -24,10 +28,12 @@ const ProductPageContainer = () => {
     );
   }, [products, searchQuery, sortOrder]);
 
-  const { paginatedItems: currentProducts, totalPages, currentPage, paginate } = usePagination(
-    filteredAndSortedProducts,
-    5
-  );
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredAndSortedProducts.slice(start, start + itemsPerPage);
+  }, [filteredAndSortedProducts, currentPage]);
+
+  const totalPages = Math.ceil(filteredAndSortedProducts.length / itemsPerPage);
 
   const handleAddProduct = useCallback(
     (newProduct) => {
@@ -45,6 +51,14 @@ const ProductPageContainer = () => {
     [editProduct]
   );
 
+  const handleSortOrderChange = useCallback(() => {
+    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  }, []);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>{error}</div>;
 
@@ -55,17 +69,17 @@ const ProductPageContainer = () => {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         sortOrder={sortOrder}
-        onSortOrderChange={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+        onSortOrderChange={handleSortOrderChange}
         onAddProduct={() => setIsAddingProduct(true)}
       />
       <ProductList
-        products={currentProducts}
+        products={paginatedProducts}
         onEdit={setEditingProduct}
         onDelete={deleteProduct}
       />
       <Pagination
         totalPages={totalPages}
-        paginate={paginate}
+        paginate={handlePageChange}
         currentPage={currentPage}
       />
       {isAddingProduct && (
