@@ -58,17 +58,16 @@ export const ProductsProvider = ({ children }) => {
     }
   }, [productService]);
 
-  const value = useMemo(() => ({
-    products,
-    loading,
-    error,
-    addProduct,
-    editProduct,
-    deleteProduct,
-  }), [products, loading, error, addProduct, editProduct, deleteProduct]);
 
   return (
-    <ProductsContext.Provider value={value}>
+    <ProductsContext.Provider value={{
+      products,
+      loading,
+      error,
+      addProduct,
+      editProduct,
+      deleteProduct,
+    }}>
       {children}
     </ProductsContext.Provider>
   );
