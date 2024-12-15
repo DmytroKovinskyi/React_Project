@@ -1,7 +1,13 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import React, { createContext, useContext, useMemo, useState, useCallback, useEffect } from "react";
 import { ProductService } from "../services/products.service";
 
-export const useProducts = () => {
+export const ProductsContext = createContext();
+
+export const useProductsContext = () => {
+  return useContext(ProductsContext);
+};
+
+export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,12 +58,17 @@ export const useProducts = () => {
     }
   }, [productService]);
 
-  return {
-    products,
-    loading,
-    error,
-    addProduct,
-    editProduct,
-    deleteProduct,
-  };
+
+  return (
+    <ProductsContext.Provider value={{
+      products,
+      loading,
+      error,
+      addProduct,
+      editProduct,
+      deleteProduct,
+    }}>
+      {children}
+    </ProductsContext.Provider>
+  );
 };

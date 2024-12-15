@@ -26,6 +26,7 @@ const EditProduct = ({ product, onSave, onClose }) => {
       setErrors(fieldErrors);
       return;
     }
+    
 
     onSave(product.id, { title, description, price: parseFloat(price), image });
     onClose();
